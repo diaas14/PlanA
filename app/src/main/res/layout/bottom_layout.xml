@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/burgundy">
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_motivation"
+        android:background="@android:color/transparent"
+        android:padding="15dp"
+        android:contentDescription="@string/tab1"
+        />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_calendar"
+        android:background="@android:color/transparent"
+        android:padding="15dp"
+        android:contentDescription="@string/tab2"
+        />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_focus"
+        android:background="@android:color/transparent"
+        android:padding="15dp"
+        android:contentDescription="@string/tab3"
+        />
+
+</LinearLayout>

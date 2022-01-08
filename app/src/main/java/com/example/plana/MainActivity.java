@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         imageButtonCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CalendarTab.class);
+                Intent intent = new Intent(MainActivity.this, FirstCalendarTab.class);
                 startActivity(intent);
             }
         });

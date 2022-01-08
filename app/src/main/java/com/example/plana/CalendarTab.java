@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class CalendarTab extends AppCompatActivity {
 
@@ -18,24 +21,35 @@ public class CalendarTab extends AppCompatActivity {
     private static Boolean [] markedAsDone = {true, false, false};
     private Button btnAdd;
     private ImageButton imageButtonMotivation;
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_tab);
 
+
         imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
 
-        TaskAdapter adapter = new TaskAdapter(this, mainTitle, dueTime, desc, markedAsDone);
+        date=getIntent().getStringExtra("date");
+        TextView textViewDay = (TextView) findViewById(R.id.textViewDay);
+        textViewDay.setText(date);
+
+        DataBaseHelper db = new DataBaseHelper(CalendarTab.this);
+        List<TaskModel> taskModelList = db.selectTasks(date);
+
+        TaskAdapter adapter = new TaskAdapter(this, taskModelList);
         listViewTasks = (ListView) findViewById(R.id.listView);
         listViewTasks.setAdapter(adapter);
-
         btnAdd = (Button) findViewById(R.id.buttonAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CalendarTab.this, TaskForm.class);
+                intent.putExtra("date",date);
                 startActivity(intent);
+
             }
         });
 

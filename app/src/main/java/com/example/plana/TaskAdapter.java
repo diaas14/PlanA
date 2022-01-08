@@ -9,22 +9,19 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class TaskAdapter extends ArrayAdapter<String> {
 
     private final Activity context;
-    private final String[] mainTitle;
-    private final String[] dueTime;
-    private final String[] desc;
-    private final Boolean[] markedAsDone;
+    private final List<TaskModel> taskModelList;
 
-    public TaskAdapter(Activity context, String[] mainTitle,String[] dueTime, String[] desc, Boolean[] markedAsDone) {
-        super(context, R.layout.task, mainTitle);
+    public TaskAdapter(Activity context, List<TaskModel> taskModelList)
+    {
+        super(context, R.layout.task);
 
         this.context=context;
-        this.mainTitle=mainTitle;
-        this.dueTime=dueTime;
-        this.desc=desc;
-        this.markedAsDone=markedAsDone;
+        this.taskModelList=taskModelList;
 
     }
 
@@ -38,10 +35,10 @@ public class TaskAdapter extends ArrayAdapter<String> {
         TextView descText = (TextView) rowView.findViewById(R.id.textViewDescription);
         CheckBox doneCheckBox = (CheckBox) rowView.findViewById(R.id.checkBoxDone);
 
-        titleText.setText(mainTitle[position]);
-        dueTimeText.setText(dueTime[position]);
-        descText.setText(desc[position]);
-        doneCheckBox.setChecked(markedAsDone[position]);
+        titleText.setText(taskModelList.get(position).getTaskName());
+        dueTimeText.setText(taskModelList.get(position).getTime());
+        descText.setText(taskModelList.get(position).getTaskDesc());
+        doneCheckBox.setChecked(taskModelList.get(position).isMarkAsDone());
         return rowView;
 
     };

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5D1049"
+    android:background="#C5A0BB"
     tools:context=".MainActivity"
     >
 
@@ -14,4 +14,74 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         tools:layout_editor_absoluteX="0dp" />
+    <TextView
+        android:id="@+id/textViewTask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+
+        android:background="@color/burgundy"
+        android:padding="15dp"
+        android:text="Add Task"
+        android:textColor="@color/rose_gold"
+        android:textSize="32sp" />
+
+
+    <EditText
+        android:id="@+id/editTextTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/textViewTask"
+        android:background="@color/rose_gold"
+        android:ems="10"
+        android:hint="Task Name"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="8dp"
+        tools:ignore="DuplicateClickableBoundsCheck" />
+
+    <EditText
+        android:id="@+id/editTextDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/editTextTaskName"
+        android:background="@color/rose_gold"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:padding="8dp" />
+
+    <TimePicker
+        android:id="@+id/timePickerForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextDesc"
+        android:layout_margin="10dp"
+        ></TimePicker>
+
+    <Switch
+        android:id="@+id/switchDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timePickerForm"
+        android:layout_alignStart="@id/timePickerForm"
+        android:minHeight="48dp"
+        android:text="Mark as done"
+        android:textColor="@color/burgundy"
+        android:clickable="false"/>
+
+    <Button
+        android:id="@+id/buttonFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/burgundy"
+        android:textColor="@color/white"
+        android:layout_below="@id/timePickerForm"
+        android:layout_alignEnd="@id/timePickerForm"
+        android:text="Finish" />
+
 </RelativeLayout>

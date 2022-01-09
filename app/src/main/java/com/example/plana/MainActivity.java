@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity {
     private ImageButton imageButtonMotivation;
     private ImageButton imageButtonCalendar;
-    private ImageButton imageButtonFocus;
+    private ImageButton imageButtonToday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
         imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
-        imageButtonFocus = (ImageButton) findViewById(R.id.imageButton3);
+        imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
 
         imageButtonMotivation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FirstCalendarTab.class);
+                startActivity(intent);
+            }
+        });
+
+        imageButtonToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TaskToday.class);
                 startActivity(intent);
             }
         });

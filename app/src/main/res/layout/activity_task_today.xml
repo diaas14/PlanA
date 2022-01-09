@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#C5A0BB"
+    tools:context=".MotivationTab">
+
+    <TextView
+        android:id="@+id/textViewToday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:background="@color/burgundy"
+        android:padding="15dp"
+        android:text="Today's Tasks"
+        android:textColor="@color/rose_gold"
+        android:textSize="32sp" />
+
+    <ListView
+        android:id="@+id/listViewToday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewToday"
+        android:layout_marginTop="-2dp"
+        android:background="@color/rose_gold"
+        android:padding="10dp" />
+
+    <include
+        android:id="@+id/customViewBottom"
+        layout="@layout/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

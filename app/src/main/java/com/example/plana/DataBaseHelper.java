@@ -33,7 +33,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTableStatement = "CREATE TABLE " + TABLE_TASKS + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TASK_NAME + " TEXT, " + COLUMN_TASK_DESC + " TEXT, " + COLUMN_DONE + " BOOL, " + COLUMN_TIME + " TEXT, " + COLUMN_DAY + " DATE)";
         db.execSQL(createTableStatement);
-
     }
 
     @Override
@@ -79,5 +78,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return returnList;
+    }
+
+    public void updateDone(boolean done, int id) {
+        String updateStatement = "UPDATE " + TABLE_TASKS + " SET " + COLUMN_DONE + " = " + done + " WHERE " + COLUMN_ID + " = " + id;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(updateStatement);
     }
 }

@@ -8,11 +8,14 @@ import android.view.View;
 
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CheckBox;
 
 import java.util.List;
 
@@ -22,6 +25,7 @@ public class CalendarTab extends AppCompatActivity {
     private Button btnAdd;
     private ImageButton imageButtonMotivation;
     private String date;
+    private List<TaskModel> taskModelList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +46,23 @@ public class CalendarTab extends AppCompatActivity {
 
         DataBaseHelper db = new DataBaseHelper(CalendarTab.this);
         try {
-            List<TaskModel> taskModelList = db.selectTasks(date);
+            taskModelList = db.selectTasks(date);
             TaskAdapter adapter = new TaskAdapter(CalendarTab.this, taskModelList);
             listViewTasks = (ListView) findViewById(R.id.listView);
             listViewTasks.setAdapter(adapter);
         } catch (SQLQueryException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
+
+        listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDone);
+
+                // db.updateDone(checkBox.isChecked(), taskModelList.get(position).getId());
+                Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+            }
+        });
 
         btnAdd = (Button) findViewById(R.id.buttonAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {

@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CalenderViewCustom" parent="Theme.AppCompat">
-
-        <item name="colorAccent">@color/pink</item>
-
-        <item name="colorPrimary">@color/white</item>
-    </style>
-
-    <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/rose_gold</item>
+        <!--selected Item color-->
+        <item name="colorControlActivated">@color/pink</item>
+        <!-- arrow bordercolor(<>)-->
+        <!--<item name="android:selectableItemBackgroundBorderless">@color/pink</item>-->
+        <!-- Highlight item color-->
+        <item name="colorControlHighlight">@color/white</item>
+        <!--Calender Background color -->
+        <item name="android:windowBackground">@color/rose_gold</item>
+        <!-- Ok Cancel Color-->
         <item name="android:textColor">@color/white</item>
-        <item name="android:weekNumberColor">@color/pink</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textStyle">bold</item>
+        <!-- Week TextColor-->
+        <item name="android:textColorSecondary">@color/white</item>
+        <!-- Calender Number color arrow color (< >) -->
+        <item name="android:textColorPrimary">@color/white</item>
+        <!--day , month-->
+        <item name="android:textColorPrimaryInverse">@color/burgundy</item>
+        <!-- year-->
+        <item name="android:textColorSecondaryInverse">@color/burgundy</item>
 
     </style>
 
-    <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textColor">@color/rose_gold</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textStyle">bold</item>
+
+    <style name="MyTimePickerDialogStyle" parent="@style/ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="showTitle">false</item>
+        <item name="colorControlActivated">@color/pink</item>
+        <item name="colorAccent">@color/rose_gold</item>
+        <item name="android:textColorPrimary">@color/burgundy</item>
+        <item name="android:textColorSecondary">@color/rose_gold</item>
     </style>
 
 </resources>

@@ -60,8 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextDesc"
+        android:layout_marginTop="20dp"
         android:layout_margin="10dp"
-        ></TimePicker>
+        android:layout_marginBottom="10dp"
+        android:theme="@style/MyTimePickerDialogStyle"></TimePicker>
 
     <Switch
         android:id="@+id/switchDone"
@@ -69,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/timePickerForm"
         android:layout_alignStart="@id/timePickerForm"
+        android:layout_margin="10dp"
         android:minHeight="48dp"
         android:text="Mark as done"
         android:textColor="@color/burgundy"
@@ -80,6 +83,7 @@
         android:layout_height="wrap_content"
         android:background="@color/burgundy"
         android:textColor="@color/white"
+        android:layout_margin="10dp"
         android:layout_below="@id/timePickerForm"
         android:layout_alignEnd="@id/timePickerForm"
         android:text="Finish" />

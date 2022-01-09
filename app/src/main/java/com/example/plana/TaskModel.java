@@ -68,4 +68,16 @@ public class TaskModel {
     public void setId(int id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "TaskModel{" +
+                "taskName='" + taskName + '\'' +
+                ", taskDesc='" + taskDesc + '\'' +
+                ", markAsDone=" + markAsDone +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }

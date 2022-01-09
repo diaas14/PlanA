@@ -30,34 +30,20 @@ public class TaskForm extends AppCompatActivity {
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*String result = String.format("%s %s, %s:%s", taskName.getText()
-                        , taskDesc.getText()
-                        , dueTime.getCurrentHour()
-                        , dueTime.getCurrentMinute());
-
-                Toast.makeText(TaskForm.this,result,Toast.LENGTH_LONG).show();*/
-
                 try {
                     TaskModel taskModel = new TaskModel(-1, taskName.getText().toString(), taskDesc.getText().toString(), false,
-                            date,getTime());
+                            date, getTime());
                     DataBaseHelper db = new DataBaseHelper(TaskForm.this);
                     boolean success = db.addOne(taskModel);
                     Toast.makeText(TaskForm.this, success ? "Successful" : "Unsuccessful", Toast.LENGTH_LONG).show();
-
                 } catch (Exception e) {
                     Toast.makeText(TaskForm.this, "ERROR", Toast.LENGTH_LONG).show();
-
                 }
-
             }
         });
-
     }
 
     public String getTime() {
-
-
         StringBuilder sb = new StringBuilder();
         sb.append(dueTime.getCurrentHour() <= 9 ? "0" + dueTime.getCurrentHour() : dueTime.getCurrentHour());
         sb.append(":");

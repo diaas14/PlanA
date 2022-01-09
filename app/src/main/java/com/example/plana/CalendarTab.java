@@ -9,16 +9,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 public class CalendarTab extends AppCompatActivity {
 
     private ListView listViewTasks;
-    private static String [] mainTitle = {"Math Quiz", "Chem Lab", "C++ Contest"};
-    private static String [] desc = {"Casual Quiz", "Portions: Organic Chemistry and sub chapters", "Contest on Leetcode"};
-    private static String [] dueTime = {"7 am", "10 pm", "11 pm"};
-    private static Boolean [] markedAsDone = {true, false, false};
     private Button btnAdd;
     private ImageButton imageButtonMotivation;
     private String date;
@@ -37,11 +34,15 @@ public class CalendarTab extends AppCompatActivity {
         textViewDay.setText(date);
 
         DataBaseHelper db = new DataBaseHelper(CalendarTab.this);
-        List<TaskModel> taskModelList = db.selectTasks(date);
+        try {
+            List<TaskModel> taskModelList = db.selectTasks(date);
+            TaskAdapter adapter = new TaskAdapter(CalendarTab.this, taskModelList);
+            listViewTasks = (ListView) findViewById(R.id.listView);
+            listViewTasks.setAdapter(adapter);
+        } catch (SQLQueryException e) {
+            Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
-        TaskAdapter adapter = new TaskAdapter(this, taskModelList);
-        listViewTasks = (ListView) findViewById(R.id.listView);
-        listViewTasks.setAdapter(adapter);
         btnAdd = (Button) findViewById(R.id.buttonAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

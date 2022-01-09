@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+import androidx.loader.content.AsyncTaskLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,31 +52,32 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         return (db.insert(TABLE_TASKS, null, cv) > 0);
     }
-    public List<TaskModel> selectTasks(String date)
-    {
-      List<TaskModel> returnList = new ArrayList<>();
-      String selectStatement = "SELECT * FROM "+TABLE_TASKS+" WHERE "+COLUMN_DAY+" = "+ date;
-      SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectStatement,null);
-        if (cursor.moveToFirst())
-        {
-            do{
-                int taskid = cursor.getInt(0);
+
+    public List<TaskModel> selectTasks(String date) throws SQLQueryException {
+        List<TaskModel> returnList = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        sb.append('\'').append(date).append('\'');
+
+        String selectStatement = "SELECT * FROM " + TABLE_TASKS + " WHERE " + COLUMN_DAY + " = " + sb.toString();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectStatement, null);
+        if (cursor.moveToFirst()) {
+            do {
+                int taskId = cursor.getInt(0);
                 String taskName = cursor.getString(1);
                 String taskDesc = cursor.getString(2);
-                boolean taskDone = cursor.getInt(3)==1?true:false;
+                boolean taskDone = cursor.getInt(3) == 1;
                 String time = cursor.getString(4);
                 String day = cursor.getString(5);
-
-            }while(cursor.moveToNext());
-        }
-        else
-        {
-
+                TaskModel taskModel = new TaskModel(taskId, taskName, taskDesc, taskDone, day, time);
+                returnList.add(taskModel);
+            } while (cursor.moveToNext());
+        } else {
+            throw new SQLQueryException("Query returns no rows");
         }
         cursor.close();
         db.close();
 
-        return  returnList;
+        return returnList;
     }
 }

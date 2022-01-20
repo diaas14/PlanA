@@ -52,6 +52,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return (db.insert(TABLE_TASKS, null, cv) > 0);
     }
 
+    public void markDone(int id, boolean checked) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_DONE, checked);
+
+        db.update(TABLE_TASKS, cv, "id=" + id, null);
+
+    }
+
+
     public List<TaskModel> selectTasks(String date) throws SQLQueryException {
         List<TaskModel> returnList = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
@@ -78,11 +89,5 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return returnList;
-    }
-
-    public void updateDone(boolean done, int id) {
-        String updateStatement = "UPDATE " + TABLE_TASKS + " SET " + COLUMN_DONE + " = " + done + " WHERE " + COLUMN_ID + " = " + id;
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(updateStatement);
     }
 }

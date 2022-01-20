@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/custom_border"
     android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
         android:layout_width="match_parent"

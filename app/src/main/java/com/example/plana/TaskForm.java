@@ -2,6 +2,7 @@ package com.example.plana;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -46,6 +47,9 @@ public class TaskForm extends AppCompatActivity {
                 } catch (Exception e) {
                     Toast.makeText(TaskForm.this, "ERROR", Toast.LENGTH_LONG).show();
                 }
+                Intent intent = new Intent(TaskForm.this, CalendarTab.class);
+                intent.putExtra("date", date);
+                startActivity(intent);
             }
         });
     }

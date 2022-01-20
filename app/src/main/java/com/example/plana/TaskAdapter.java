@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
 
     private final Activity context;
     private final List<TaskModel> taskModelList;
+    private DataBaseHelper db;
 
     public TaskAdapter(Activity context, List<TaskModel> taskModelList)
     {
@@ -23,6 +25,7 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
 
         this.context=context;
         this.taskModelList=taskModelList;
+        this.db = new DataBaseHelper(context);
         Log.i("Length", String.valueOf(this.taskModelList.size()));
 
     }
@@ -41,7 +44,20 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
         dueTimeText.setText(taskModelList.get(position).getTime());
         descText.setText(taskModelList.get(position).getTaskDesc());
         doneCheckBox.setChecked(taskModelList.get(position).isMarkAsDone());
-        return rowView;
 
+        doneCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    db.markDone(taskModelList.get(position).getId(), doneCheckBox.isChecked());
+                } catch (Error e) {
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+                // Toast.makeText(context, "Checkbox " + position + " checked. ID: " + taskModelList.get(position).getId(), Toast.LENGTH_LONG).show();
+                // Toast.makeText(context, "Checkbox " + position + " unchecked. ID: " + taskModelList.get(position).getId(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        return rowView;
     };
 }

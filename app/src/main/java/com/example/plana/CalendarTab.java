@@ -39,6 +39,7 @@ public class CalendarTab extends AppCompatActivity {
 
 
         imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
+        listViewTasks = (ListView) findViewById(R.id.listView);
 
         date=getIntent().getStringExtra("date");
         TextView textViewDay = (TextView) findViewById(R.id.textViewDay);
@@ -48,21 +49,18 @@ public class CalendarTab extends AppCompatActivity {
         try {
             taskModelList = db.selectTasks(date);
             TaskAdapter adapter = new TaskAdapter(CalendarTab.this, taskModelList);
-            listViewTasks = (ListView) findViewById(R.id.listView);
             listViewTasks.setAdapter(adapter);
         } catch (SQLQueryException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDone);
-
-                // db.updateDone(checkBox.isChecked(), taskModelList.get(position).getId());
-                Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+                CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDone);
+                Toast.makeText(getApplicationContext(), "HEY" + taskModelList.get(position).getId() + " " + checkBox.isChecked(), Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
         btnAdd = (Button) findViewById(R.id.buttonAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -83,4 +81,5 @@ public class CalendarTab extends AppCompatActivity {
             }
         });
     }
+
 }

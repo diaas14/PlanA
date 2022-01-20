@@ -39,12 +39,20 @@ public class TaskForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    if (taskName.getText().toString().equals(""))
+                        throw new EmptyFieldException("Task Name Empty");
                     TaskModel taskModel = new TaskModel(-1, taskName.getText().toString(), taskDesc.getText().toString(), false,
                             date, getTime());
                     DataBaseHelper db = new DataBaseHelper(TaskForm.this);
                     boolean success = db.addOne(taskModel);
                     Toast.makeText(TaskForm.this, success ? "Successful" : "Unsuccessful", Toast.LENGTH_LONG).show();
-                } catch (Exception e) {
+                }
+                catch (EmptyFieldException e)
+                {
+                    Toast.makeText(TaskForm.this, e.getMessage(), Toast.LENGTH_LONG).show();
+
+                }
+                catch (Exception e) {
                     Toast.makeText(TaskForm.this, "ERROR", Toast.LENGTH_LONG).show();
                 }
                 Intent intent = new Intent(TaskForm.this, CalendarTab.class);

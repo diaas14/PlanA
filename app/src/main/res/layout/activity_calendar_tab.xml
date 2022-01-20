@@ -27,11 +27,13 @@
         android:background="@color/rose_gold"
         android:padding="10dp" />
 
+
     <Button
         android:id="@+id/buttonAdd"
         android:layout_margin="8dp"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
         android:background="@drawable/ic_addcircle"
         android:layout_alignEnd="@id/customViewBottom"
         android:layout_above="@id/customViewBottom"

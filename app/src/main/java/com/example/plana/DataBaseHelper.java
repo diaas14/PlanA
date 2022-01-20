@@ -61,6 +61,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_TASKS, cv, "id=" + id, null);
 
     }
+    public void deleteTask(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TASKS, "id=" + id, null);
+
+    }
+
+
 
 
     public List<TaskModel> selectTasks(String date) throws SQLQueryException {

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,7 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
         TextView dueTimeText= (TextView)rowView.findViewById(R.id.textViewDueTime);
         TextView descText = (TextView) rowView.findViewById(R.id.textViewDescription);
         CheckBox doneCheckBox = (CheckBox) rowView.findViewById(R.id.checkBoxDone);
+        ImageButton btnDetele = (ImageButton)rowView.findViewById(R.id.buttonBin);
 
         titleText.setText(taskModelList.get(position).getTaskName());
         dueTimeText.setText(taskModelList.get(position).getTime());
@@ -55,6 +57,17 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
                 }
                 // Toast.makeText(context, "Checkbox " + position + " checked. ID: " + taskModelList.get(position).getId(), Toast.LENGTH_LONG).show();
                 // Toast.makeText(context, "Checkbox " + position + " unchecked. ID: " + taskModelList.get(position).getId(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnDetele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    db.deleteTask(taskModelList.get(position).getId());
+                } catch (Error e) {
+                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         });
 

@@ -20,9 +20,11 @@
         <item name="android:textColorPrimaryInverse">@color/burgundy</item>
         <!-- year-->
         <item name="android:textColorSecondaryInverse">@color/burgundy</item>
-
     </style>
 
+    <style name="MyProgressStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/burgundy</item>
+    </style>
 
     <style name="MyTimePickerDialogStyle" parent="@style/ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="showTitle">false</item>

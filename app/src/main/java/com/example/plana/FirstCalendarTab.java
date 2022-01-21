@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -20,8 +21,9 @@ import java.util.Date;
 
 public class FirstCalendarTab extends AppCompatActivity {
     private DatePicker datePicker;
-    private Button taskbutton;
-
+    private ImageButton imageButtonMotivation;
+    private ImageButton imageButtonCalendar;
+    private ImageButton imageButtonToday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +34,10 @@ public class FirstCalendarTab extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_first_calendar_tab);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
-        taskbutton = (Button) findViewById(R.id.buttonTask);
+        Button taskbutton = (Button) findViewById(R.id.buttonTask);
         taskbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                 String date = getDate();
                 //Toast.makeText(FirstCalendarTab.this,date,Toast.LENGTH_LONG).show();
 
@@ -61,6 +60,34 @@ public class FirstCalendarTab extends AppCompatActivity {
 
                 return sb.toString();
 
+            }
+        });
+
+        imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
+        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
+        imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
+
+        imageButtonMotivation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstCalendarTab.this, MotivationTab.class);
+                startActivity(intent);
+            }
+        });
+
+        imageButtonCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstCalendarTab.this, FirstCalendarTab.class);
+                startActivity(intent);
+            }
+        });
+
+        imageButtonToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FirstCalendarTab.this, TaskToday.class);
+                startActivity(intent);
             }
         });
 

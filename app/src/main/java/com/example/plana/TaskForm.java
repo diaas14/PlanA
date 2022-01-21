@@ -9,10 +9,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
-import java.sql.Time;
 
 public class TaskForm extends AppCompatActivity {
     private String date;
@@ -20,6 +19,9 @@ public class TaskForm extends AppCompatActivity {
     private EditText taskName;
     private EditText taskDesc;
     private TimePicker dueTime;
+    private ImageButton imageButtonMotivation;
+    private ImageButton imageButtonCalendar;
+    private ImageButton imageButtonToday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,11 @@ public class TaskForm extends AppCompatActivity {
         taskName = (EditText) findViewById(R.id.editTextTaskName);
         taskDesc = (EditText) findViewById(R.id.editTextDesc);
         dueTime = (TimePicker) findViewById(R.id.timePickerForm);
+
+        imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
+        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
+        imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
+
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +67,29 @@ public class TaskForm extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        imageButtonMotivation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskForm.this, MotivationTab.class);
+                startActivity(intent);
+            }
+        });
+
+        imageButtonCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskForm.this, FirstCalendarTab.class);
+                startActivity(intent);
+            }
+        });
+
+        imageButtonToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TaskForm.this, TaskToday.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public String getTime() {
@@ -70,6 +100,4 @@ public class TaskForm extends AppCompatActivity {
 
         return sb.toString();
     }
-
-
 }

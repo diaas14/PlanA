@@ -2,6 +2,7 @@ package com.example.plana;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -65,6 +66,7 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
             public void onClick(View v) {
                 try {
                     db.deleteTask(taskModelList.get(position).getId());
+                    Toast.makeText(context, "Delete successful, refresh page to reflect changes", Toast.LENGTH_LONG).show();
                 } catch (Error e) {
                     Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                 }

@@ -93,7 +93,7 @@ public class TaskToday extends AppCompatActivity {
     }
 
     float getPercentage() {
-        if (taskModelList.isEmpty()) return 100;
+        if (taskModelList == null) return 100;
         int tasksDone = 0, totalTasks;
         totalTasks = taskModelList.size();
         for (TaskModel taskModel: taskModelList) {

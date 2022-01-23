@@ -8,10 +8,18 @@
     tools:context=".MainActivity"
     >
 
+    <ImageView
+        android:id="@+id/gif"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
     <include
         layout="@layout/bottom_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         tools:layout_editor_absoluteX="0dp" />
+
 </RelativeLayout>

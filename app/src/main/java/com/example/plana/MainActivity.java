@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton imageButtonMotivation;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
         imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
         imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
+
+        ImageView imageView = findViewById(R.id.gif);
+        Glide.with(this).load(R.drawable.motivacion).into(imageView);
 
         imageButtonMotivation.setOnClickListener(new View.OnClickListener() {
             @Override

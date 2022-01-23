@@ -16,7 +16,7 @@
         android:padding="15dp"
         android:text="Today's Tasks"
         android:textColor="@color/rose_gold"
-        android:textSize="32sp" />
+        android:textSize="30sp" />
 
     <RelativeLayout
         android:id="@+id/progressLayer"

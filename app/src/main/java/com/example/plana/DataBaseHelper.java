@@ -67,9 +67,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-
-
-
     public List<TaskModel> selectTasks(String date) throws SQLQueryException {
         List<TaskModel> returnList = new ArrayList<>();
         StringBuilder sb = new StringBuilder();

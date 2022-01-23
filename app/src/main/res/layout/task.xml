@@ -51,6 +51,7 @@
                 android:textSize="12sp"
                 tools:ignore="TouchTargetSizeCheck" />
 
+
             <ImageButton
                 android:id="@+id/buttonBin"
                 android:layout_width="30dp"

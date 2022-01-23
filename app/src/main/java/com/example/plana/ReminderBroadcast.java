@@ -17,6 +17,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
                 .setContentText("Check the application to view the task")
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
+
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
 
         notificationManager.notify(200, builder.build());

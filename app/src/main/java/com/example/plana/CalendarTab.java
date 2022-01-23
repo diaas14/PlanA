@@ -52,7 +52,6 @@ public class CalendarTab extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         date = extras.getString("date");
 
-        Toast.makeText(getApplicationContext(), extras.getString("day") + " " + extras.getString("month") + " " + extras.getString("year"), Toast.LENGTH_LONG).show();
         TextView textViewDay = (TextView) findViewById(R.id.textViewDay);
         textViewDay.setText(date);
 

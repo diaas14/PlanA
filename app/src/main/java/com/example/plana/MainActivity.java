@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton imageButtonMotivation;
@@ -26,13 +29,9 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setContentView(R.layout.activity_main);
-
-        imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
-        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
+        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton1);
+        imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton2);
         imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
-
-        ImageView imageView = findViewById(R.id.gif);
-        Glide.with(this).load(R.drawable.motivacion).into(imageView);
 
         imageButtonMotivation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +56,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
     }
 }

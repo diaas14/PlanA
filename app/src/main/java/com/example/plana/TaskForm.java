@@ -80,10 +80,12 @@ public class TaskForm extends AppCompatActivity {
                     Toast.makeText(TaskForm.this, success ? "Successful" : "Unsuccessful", Toast.LENGTH_LONG).show();
 
                 }
-                catch (EmptyFieldException e)
-                {
+                catch (EmptyFieldException e) {
                     Toast.makeText(TaskForm.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
+                }
+                catch (NumberFormatException e) {
+                    Toast.makeText(TaskForm.this, "Cannot set reminder", Toast.LENGTH_LONG).show();
                 }
                 catch (Exception e) {
                     Toast.makeText(TaskForm.this, "ERROR", Toast.LENGTH_LONG).show();

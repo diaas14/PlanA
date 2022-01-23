@@ -2,6 +2,8 @@ package com.example.plana;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import java.util.Calendar;
 
 public class TaskForm extends AppCompatActivity {
     private String date;
@@ -42,6 +46,10 @@ public class TaskForm extends AppCompatActivity {
         imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
         imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
 
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        Calendar cal = Calendar.getInstance();
+
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +60,25 @@ public class TaskForm extends AppCompatActivity {
                             date, getTime());
                     DataBaseHelper db = new DataBaseHelper(TaskForm.this);
                     boolean success = db.addOne(taskModel);
+
+                    cal.clear();
+                    cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(extras.getString("day")));
+                    cal.set(Calendar.MONTH, Integer.valueOf(extras.getString("month")));
+                    cal.set(Calendar.YEAR, Integer.valueOf(extras.getString("year")));
+                    cal.set(Calendar.HOUR_OF_DAY, dueTime.getCurrentHour());
+                    cal.set(Calendar.MINUTE, dueTime.getCurrentMinute());
+                    cal.set(Calendar.SECOND, 0);
+                    cal.set(Calendar.MILLISECOND, 0);
+
+                    Intent intent1 = new Intent(TaskForm.this, ReminderBroadcast.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(TaskForm.this, 0, intent1, 0);
+
+                    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+
                     Toast.makeText(TaskForm.this, success ? "Successful" : "Unsuccessful", Toast.LENGTH_LONG).show();
+
                 }
                 catch (EmptyFieldException e)
                 {

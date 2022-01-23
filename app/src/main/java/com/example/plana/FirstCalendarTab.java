@@ -5,18 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
-import android.widget.Toast;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class FirstCalendarTab extends AppCompatActivity {
@@ -42,24 +36,15 @@ public class FirstCalendarTab extends AppCompatActivity {
                 //Toast.makeText(FirstCalendarTab.this,date,Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(FirstCalendarTab.this, CalendarTab.class);
-                intent.putExtra("date",date);
+                // intent.putExtra("date", date);
+                Bundle extras = new Bundle();
+                extras.putString("date", date);
+                extras.putString("day", String.valueOf(datePicker.getDayOfMonth()));
+                extras.putString("month", String.valueOf(datePicker.getMonth()));
+                extras.putString("year", String.valueOf(datePicker.getYear()));
+                intent.putExtras(extras);
+
                 startActivity(intent);
-
-            }
-            public String getDate()
-            {
-                StringBuilder sb = new StringBuilder();
-                int day = datePicker.getDayOfMonth();
-                int month = datePicker.getMonth() + 1;
-                int year = datePicker.getYear();
-                sb.append(year);
-                sb.append("-");
-                sb.append(month<=9?"0"+month:month);
-                sb.append("-");
-                sb.append(day<=9?"0"+day:day);
-
-                return sb.toString();
-
             }
         });
 
@@ -91,6 +76,20 @@ public class FirstCalendarTab extends AppCompatActivity {
             }
         });
 
+    }
+
+    public String getDate() {
+        StringBuilder sb = new StringBuilder();
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth() + 1;
+        int year = datePicker.getYear();
+        sb.append(year);
+        sb.append("-");
+        sb.append(month<=9?"0"+month:month);
+        sb.append("-");
+        sb.append(day<=9?"0"+day:day);
+
+        return sb.toString();
     }
 
 }

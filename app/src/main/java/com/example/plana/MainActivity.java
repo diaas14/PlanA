@@ -2,7 +2,10 @@ package com.example.plana;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
         setContentView(R.layout.activity_main);
+
+        createNotificationChannel();
+
         imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton1);
         imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton2);
         imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
@@ -56,9 +62,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "notifyReminderChannel";
+            String description = "Channel for Task Reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("notifychannel", name, importance);
+            channel.setDescription(description);
 
-
-
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 }

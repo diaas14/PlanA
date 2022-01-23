@@ -39,11 +39,20 @@ public class CalendarTab extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_calendar_tab);
 
-
         imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
         listViewTasks = (ListView) findViewById(R.id.listView);
+        btnAdd = (Button) findViewById(R.id.buttonAdd);
+        imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
+        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
+        imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
 
-        date=getIntent().getStringExtra("date");
+        // date=getIntent().getStringExtra("date");
+
+
+        Bundle extras = getIntent().getExtras();
+        date = extras.getString("date");
+
+        Toast.makeText(getApplicationContext(), extras.getString("day") + " " + extras.getString("month") + " " + extras.getString("year"), Toast.LENGTH_LONG).show();
         TextView textViewDay = (TextView) findViewById(R.id.textViewDay);
         textViewDay.setText(date);
 
@@ -56,24 +65,11 @@ public class CalendarTab extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        /*listViewTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDone);
-                Toast.makeText(getApplicationContext(), "HEY" + taskModelList.get(position).getId() + " " + checkBox.isChecked(), Toast.LENGTH_LONG).show();
-            }
-        });*/
-
-        btnAdd = (Button) findViewById(R.id.buttonAdd);
-        imageButtonMotivation = (ImageButton) findViewById(R.id.imageButton1);
-        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButton2);
-        imageButtonToday = (ImageButton) findViewById(R.id.imageButton3);
-
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CalendarTab.this, TaskForm.class);
-                intent.putExtra("date",date);
+                intent.putExtras(extras);
                 startActivity(intent);
             }
         });

@@ -18,5 +18,5 @@ The goal of the UI of the Application is to make the user's experience easy and 
 
 ## API used in the project
 
-**Motivational Quotes API** - to display a random inspirational quote on the MotivationalTab Activity. The dependency `'com.squareup.okhttp3:okhttp:4.9.2'` is added to the module level build.gradle file. 
-[Motivational Quotes API](https://rapidapi.com/bitbiscuit-bitbiscuit-default/api/motivational-quotes1/details)
+[Motivational Quotes API](https://rapidapi.com/bitbiscuit-bitbiscuit-default/api/motivational-quotes1/details) - to display a random inspirational quote on the MotivationalTab Activity. The dependency `'com.squareup.okhttp3:okhttp:4.9.2'` is added to the module level build.gradle file. 
+
